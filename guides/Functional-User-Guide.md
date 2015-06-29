@@ -2,7 +2,7 @@
 
 ##Links 
  - PLAS: [http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018](http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018)
- - Frontpage Manager: [http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html)
+ - Frontpage Manager: [http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/index.html](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/index.html)
 
  - Guides:
    - [Technical User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Technical-User-Guide.html)

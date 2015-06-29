@@ -1,0 +1,32 @@
+
+
+<script src="data:application/javascript;base64,ZnVuY3Rpb24gZml4RmVlZGJhY2tGb3JtKCkgewoJJCgkKCcuZmVlZGJhY2stZm9ybScpWzBdLmNvbnRlbnREb2N1bWVudCkuZmluZCgnLmJveC5mZWVkYmFja19hbm9ueW1vdXNpbmZvJykuY3NzKCdkaXNwbGF5JywgJ25vbmUnKS5oaWRlKDApOwoJJCgnLmJveC5mZWVkYmFja19mb3JtIGZvcm0nLCAkKCcuZmVlZGJhY2stZm9ybScpWzBdLmNvbnRlbnREb2N1bWVudCkuYXR0cigndGFyZ2V0JywgJ190b3AnKQoJdmFyIGZvcm0gPSAkKCcubWZvcm0nLCAkKCcuZmVlZGJhY2stZm9ybScpWzBdLmNvbnRlbnREb2N1bWVudCkuY2xvbmUoKTsKCWZvcm0uZmluZCgnI3RleHRhcmVhXzM2NDQnKS5hdHRyKCdjb2xzJywgJzIzJyk7CglodG1sID0gJCgkKCcuZmVlZGJhY2stZm9ybScpWzBdLmNvbnRlbnREb2N1bWVudCkuZmluZCgnaHRtbCcpLmNzcyh7b3ZlcmZsb3c6ICdoaWRkZW4nLCBwYWRkaW5nOjAsIGJhY2tncm91bmQ6JyNlZmU5ZTUnfSk7Cglkb2MgPSAkKCQoJy5mZWVkYmFjay1mb3JtJylbMF0uY29udGVudERvY3VtZW50LmJvZHkpOwoJZG9jLmVtcHR5KCkuY3NzKHtvdmVyZmxvdzogJ2hpZGRlbicsIHBhZGRpbmc6MCwgYmFja2dyb3VuZDonI2VmZTllNSd9KS5hcHBlbmQoZm9ybSk7Cglkb2MuZmluZCgnZm9ybScpLmF0dHIoJ3RhcmdldCcsICdfdG9wJykKCSQoJy5mZWVkYmFjay1mb3JtJykuY3NzKCd2aXNpYmlsaXR5JywndmlzaWJsZScpCn0="></script>
+<iframe src="http://mystaffdesk.usq.edu.au/moodle2/mod/feedback/complete.php?id=36326&amp;courseid&amp;gopage=0" class="feedback-form" style="
+    height: 346px;
+    width: 100%;
+    border: none;
+    visibility: hidden;
+" noscrolling="" onload="fixFeedbackForm()"></iframe>
+
+
+
+
+
+
+<script>
+
+
+function fixFeedbackForm() {
+	$($('.feedback-form')[0].contentDocument).find('.box.feedback_anonymousinfo').css('display', 'none').hide(0);
+	$('.box.feedback_form form', $('.feedback-form')[0].contentDocument).attr('target', '_top')
+	var form = $('.mform', $('.feedback-form')[0].contentDocument).clone();
+	form.find('#textarea_3644').attr('cols', '23');
+	html = $($('.feedback-form')[0].contentDocument).find('html').css({overflow: 'hidden', padding:0, background:'#efe9e5'});
+	doc = $($('.feedback-form')[0].contentDocument.body);
+	doc.empty().css({overflow: 'hidden', padding:0, background:'#efe9e5'}).append(form);
+	doc.find('form').attr('target', '_top')
+	$('.feedback-form').css('visibility','visible')
+}
+
+
+</script>

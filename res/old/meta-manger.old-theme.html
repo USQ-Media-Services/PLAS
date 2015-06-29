@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html ng-app="PLAS">
+
+<head>
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi">
+	<title>PLAS - Meta manager</title>
+
+
+
+
+	<link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" >
+
+
+
+	<!--Stylesheets!-->
+	<link rel="stylesheet" type="text/css" href="sys/css/bootstrap.min.css" >
+	<link rel="stylesheet" data-navblock data-frontpage type="text/css" href="sys/css/styles.css" >
+
+	<!--Scripts!-->
+	<script src="sys/js/jsCommons.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/base64.js" data-navblock></script>
+	<script src="sys/js/jsonf.js" data-navblock></script>
+	<script src="sys/js/jquery.min.js" data-navblock></script>
+	<script src="sys/js/usq-lightbox.js" data-navblock></script>
+	<script src="sys/js/db.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/pre.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/jquery.velocity.min.js" data-navblock></script>
+	<script src="sys/js/velocity.ui.min.js" data-navblock></script>
+	<script src="sys/js/angular.min.js" data-navblock></script>
+	<script src="sys/js/bootstrap.min.js"></script>
+	<script src="sys/js/main.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+
+
+
+
+	<style>
+		.editorItem {display:initial}
+		.no-overflow{overflow:initial}
+		.addItem {}
+		.addSubItem {position: absolute;right: -33px;margin-top: -3px;color: #97C700;font-size: 25px;cursor:pointer;}
+		.removeSubItem {position: absolute;right: -73px;margin-top: -3px;color: #E82222;font-size: 25px;cursor:pointer;}
+	</style>
+
+
+	<!--The title-->
+</head>
+<body ng-controller="meta">
+
+	<iframe style="display: none;" id="mystaffdesk" src="http://mystaffdesk.usq.edu.au/moodle2/pluginfile.php/89620/mod_resource/content/99999999/mule.html"></iframe>
+	<iframe style="display: none;" id="studyreserveprd" src="http://studyreserveprd.usq.edu.au/usq/file/0ba63021-40d0-4969-b503-fc71c5fd0e11/1/mule.html"></iframe>
+	<iframe style="display: none;" id="direct" src="https://usqdirect.usq.edu.au/usq/items/455fab04-5ac6-48cc-98de-d4edea2101de/1/mule.html"></iframe>
+
+
+	<script style="display: none;" src="http://mystaffdesk.usq.edu.au/moodle2/pluginfile.php/89620/mod_resource/content/99999999/mule.html"></script>
+	<script style="display: none;" src="http://studyreserveprd.usq.edu.au/usq/file/0ba63021-40d0-4969-b503-fc71c5fd0e11/1/mule.html"></script>
+	<script style="display: none;" src="https://usqdirect.usq.edu.au/usq/items/455fab04-5ac6-48cc-98de-d4edea2101de/1/mule.html"></script>
+
+
+
+
+    <script type="text/ng-template" id="saving.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Saving - {{$root.saveTitle || 'Getting ready...'}}</h1>
+        </div>
+        <div class="modal-body">
+			<progressbar class="progress-striped active" value="$root.progress" type="info"><div style="text-align:center; color:#444;position: absolute; width: 95%;" ng-show="progress == 0">Starting</div></progressbar>
+        </div>
+    </script>
+
+
+
+
+    <script type="text/ng-template" id="loadingDatabase.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Loading database, please wait</h1>
+        </div>
+        <div class="modal-body">
+			<progressbar class="progress-striped active" value="100" type="info"><div style="text-align:center; color:#444;position: absolute; width: 95%;" ng-show="progress == 0"></div></progressbar>
+
+        </div>
+    </script>
+
+
+
+
+	<!--Editing Nav menu!-->
+    <script type="text/ng-template" id="editLink.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Editing: {{$root.editData.title}}</h1>
+        </div>
+        <div class="modal-body">
+
+			<table  style="width:100%;">
+				<tr>
+					<td width="87">Title:</td>
+					<td><input ng-model="$root.editData.title" style="width:100%;" ></td>
+				</tr>
+				<tr>
+					<td>Image:</td>
+					<td><input ng-model="$root.editData.image" style="width:100%;"></td>
+				</tr>
+				<tr>
+					<td>Link:</td>
+					<td><input ng-model="$root.editData.link" style="width:100%;"></td>
+				</tr>
+				<tr>
+					<td>Blurb:</td>
+					<td><textarea ng-model="$root.editData.text" style="width:100%; max-width: 459px; height: 75px;"></textarea></td>
+				</tr>
+				<tr>
+					<td>Should it only in navigation:</td>
+					<td><input type="checkbox" ng-model="$root.editData.navBarOnly"></td>
+				</tr>
+				<tr>
+					<td>Open in new tab/window:</td>
+					<td><input type="checkbox" ng-true-value="_blank" ng-model="$root.editData.target"></td>
+				</tr>
+			</table>
+
+        </div>
+    </script>
+
+
+
+
+	<br>
+	<div align="center">
+		<label class="btn btn-success" ng-click="save()">Save</label>
+	</div>
+
+	<br>
+	<br>
+
+
+	<div data-navblock style="width: 200px;display: inline-block;vertical-align: top;margin-top: 5px;padding-right:10px" ng-include="'navBlock.html'" ></div>
+	<div ng-include="'tips.html'" style="display:none;"></div>
+	<div data-frontpage ng-include="'frontPage.html'" style="display: inline-block;vertical-align: top;"></div>
+
+
+
+
+
+
+
+</body>
+</html>

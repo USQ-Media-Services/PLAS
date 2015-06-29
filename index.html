@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html ng-app="PLAS">
+
+<head>
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi">
+
+	<title>PLAS - Meta manager</title>
+
+
+
+
+	<link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" >
+
+
+
+	<!--Stylesheets!-->
+	<link rel="stylesheet" type="text/css" href="sys/css/bootstrap.min.css" >
+	<link rel="stylesheet" data-navblock data-frontpage type="text/css" href="sys/css/styles.css" >
+
+	<!--Scripts!-->
+	<script>
+		var editor = true;
+	</script>
+	<script src="sys/js/jaxxy.min.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/jsCommons.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/base64.js" data-navblock></script>
+	<script src="sys/js/jsonf.js" data-navblock></script>
+	<script src="sys/js/jquery.min.js" ></script>
+	<script src="sys/js/usq-lightbox.js" data-navblock></script>
+	<script src="sys/js/db.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/pre.js" type="text/javascript" charset="utf-8"  data-navblock></script>
+	<script src="sys/js/jquery.velocity.min.js" data-navblock></script>
+	<script src="sys/js/velocity.ui.min.js" data-navblock></script>
+	<script src="sys/js/sugar.custom.min.js" data-navblock></script>
+	<script src="sys/js/angular.min.js" data-navblock></script>
+	<script src="sys/js/bootstrap.min.js" data-navblock></script>
+	<script src="sys/js/main.js" type="text/javascript" charset="utf-8" data-navblock></script>
+	<script src="bower_components/angular-contenteditable/angular-contenteditable.js" type="text/javascript" charset="utf-8" data-navblock></script>
+
+
+
+
+
+	<style>
+		.editorItem {display:initial}
+		.no-overflow{overflow:initial}
+		.addItem {}
+		.addSubItem {position: absolute;right: -33px;margin-top: -3px;color: #97C700;font-size: 25px;cursor:pointer;}
+		.removeSubItem {position: absolute;right: -73px;margin-top: -3px;color: #E82222;font-size: 25px;cursor:pointer;}
+	</style>
+
+
+</head>
+<body ng-controller="meta">
+
+
+
+
+    <script type="text/ng-template" id="saving.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Saving - {{$root.saveTitle || 'Getting ready...'}}</h1>
+        </div>
+        <div class="modal-body">
+			<progressbar class="progress-striped active" value="$root.progress" type="info"><div style="text-align:center; color:#444;position: absolute; width: 95%;" ng-show="progress == 0">Starting</div></progressbar>
+        </div>
+    </script>
+
+
+
+
+    <script type="text/ng-template" id="loadingDatabase.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Loading database, please wait</h1>
+        </div>
+        <div class="modal-body">
+			<progressbar class="progress-striped active" value="100" type="info"><div style="text-align:center; color:#444;position: absolute; width: 95%; height:15px" ng-show="progress == 0"></div></progressbar>
+
+        </div>
+    </script>
+
+
+    <script type="text/ng-template" id="editButton.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Editing Button</h1>
+        </div>
+        <div class="modal-body">
+	        <label>Title:</label> <input class="edit-button-input" ng-model="$root.editButton.title">
+	        <div ng-show="$root.editButton.link">
+		        <br>
+		        <br>
+		        <label>Link:</label> <input class="edit-button-input" ng-model="$root.editButton.link">
+			</div>
+	        <div ng-show="$root.editButton.text">
+				<br>
+		        <br>
+		        <label>Popup text:</label> <textarea class="edit-button-input" ng-model="$root.editButton.text"></textarea>
+			</div>
+	        <br>
+	        <br>
+			<label class="btn btn-success" ng-click="$root.editButton = null; $root.closeEditButton();">Apply</label>
+        </div>
+    </script>
+
+
+
+
+	<!--Editing Nav menu!-->
+    <script type="text/ng-template" id="editLink.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Editing: {{$root.editData.title}}</h1>
+        </div>
+        <div class="modal-body">
+
+			<table  style="width:100%;">
+				<tr>
+					<td width="87">Title:</td>
+					<td><input ng-model="$root.editData.title" style="width:100%;" ></td>
+				</tr>
+				<tr>
+					<td>Image:</td>
+					<td><input ng-model="$root.editData.image" style="width:100%;"></td>
+				</tr>
+				<tr>
+					<td>Link:</td>
+					<td><input ng-model="$root.editData.link" style="width:100%;"></td>
+				</tr>
+				<tr>
+					<td>Blurb:</td>
+					<td><textarea ng-model="$root.editData.text" style="width:100%; max-width: 459px; height: 75px;"></textarea></td>
+				</tr>
+				<tr>
+					<td>Should it only in navigation:</td>
+					<td><input type="checkbox" ng-model="$root.editData.navBarOnly"></td>
+				</tr>
+				<tr>
+					<td>Open in new tab/window:</td>
+					<td><input type="checkbox" ng-true-value="_blank" ng-model="$root.editData.target"></td>
+				</tr>
+			</table>
+
+        </div>
+    </script>
+
+
+
+
+	<br>
+	<div align="center">
+		<label class="btn btn-success" ng-click="save()">Save</label>
+	</div>
+
+	<br>
+	<br>
+
+
+	<div data-navblock style="width: 200px; display: inline-block; vertical-align: top; margin-top: 5px; " ng-include="'sys/templates/navigation.html'" ></div>
+	<div ng-include="'sys/templates/tips.html'" style="display:none;"></div>
+	<div data-frontpage ng-include="'sys/templates/frontpage.html'" style="display: inline-block;vertical-align: top;"></div>
+
+
+
+
+
+
+
+</body>
+</html>

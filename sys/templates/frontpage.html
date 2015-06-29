@@ -1,0 +1,136 @@
+
+
+
+
+	<link rel="stylesheet" href="data:text/css;base64,LyogSW5jbHVkZSB0aGlzIGZpbGUgaW4geW91ciBodG1sIGlmIHlvdSBhcmUgdXNpbmcgdGhlIENTUCBtb2RlLiAqLwoKQGNoYXJzZXQgIlVURi04IjsKCltuZzpjbG9ha10sIFtuZy1jbG9ha10sIFtkYXRhLW5nLWNsb2FrXSwgW3gtbmctY2xvYWtdLAoubmctY2xvYWssIC54LW5nLWNsb2FrLAoubmctaGlkZSB7CiAgZGlzcGxheTogbm9uZSAhaW1wb3J0YW50Owp9CgpuZzpmb3JtIHsKICBkaXNwbGF5OiBibG9jazsKfQoKLmRvLW5vdC1zaG93IHsKICBvcGFjaXR5OiAwICFpbXBvcnRhbnQ7Cn0KCi5uZy1hbmltYXRlLWJsb2NrLXRyYW5zaXRpb25zIHsKICB0cmFuc2l0aW9uOjBzIGFsbCFpbXBvcnRhbnQ7CiAgLXdlYmtpdC10cmFuc2l0aW9uOjBzIGFsbCFpbXBvcnRhbnQ7Cn0KCi8qIHNob3cgdGhlIGVsZW1lbnQgZHVyaW5nIGEgc2hvdy9oaWRlIGFuaW1hdGlvbiB3aGVuIHRoZQogKiBhbmltYXRpb24gaXMgb25nb2luZywgYnV0IHRoZSAubmctaGlkZSBjbGFzcyBpcyBhY3RpdmUgKi8KLm5nLWhpZGUtYWRkLWFjdGl2ZSwgLm5nLWhpZGUtcmVtb3ZlIHsKICBkaXNwbGF5OiBibG9jayFpbXBvcnRhbnQ7Cn0K">
+	<div ng-controller="master" ng-cloak class="plas yui3-cssreset ng-cloak do-not-show">
+
+
+
+
+
+
+		<div class="plas_middleContent">
+
+
+
+			<!--Welcome message-->
+			<div class="plas_welcome" ng-click="editButton($event, site);" >
+				<h2 ng-bind="site.title">&nbsp;</h2>
+				<div ng-bind-html="trust(site.text)">&nbsp;</div>
+			</div>
+
+
+		<!--Navbar!-->
+			<div class="yui3-cssreset plas_bottomBar">
+				<div class="plas_button-group">
+					<a class="plas_darkLink" ng-click="editButton($event, site.navButtons[0]);" ng-href="{{site.navButtons[0].link}}" ng-bind="site.navButtons[0].title" popover-title="{{site.navButtons[0].title}}" popover="{{site.navButtons[0].text}}" popover-trigger="mouseenter">&nbsp;</a>
+					<a class="plas_darkLink" ng-click="editButton($event, site.navButtons[1]);" ng-href="{{site.navButtons[1].link}}" ng-bind="site.navButtons[1].title" popover-title="{{site.navButtons[1].title}}" popover="{{site.navButtons[1].text}}" popover-trigger="mouseenter">&nbsp;</a>
+				</div>
+				<div class="plas_button-group">
+					<a class="plas_darkLink" ng-click="editButton($event, site.navButtons[2]);" ng-href="{{site.navButtons[2].link}}" ng-bind="site.navButtons[2].title" popover-title="{{site.navButtons[2].title}}" popover="{{site.navButtons[2].text}}" popover-trigger="mouseenter">&nbsp;</a>
+					<a class="plas_darkLink" ng-click="editButton($event, site.navButtons[3]);" ng-href="{{site.navButtons[3].link}}" ng-bind="site.navButtons[3].title" popover-title="{{site.navButtons[3].title}}" popover="{{site.navButtons[3].text}}" popover-trigger="mouseenter">&nbsp;</a>
+				</div>
+			</div>
+
+		<!--Hot Topic: New StudyDesk!-->
+			<div class="plas_integratedStudyDesk">
+				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.hotTopicTitle" contenteditable>&nbsp;</h3>
+
+
+				<div class="plas_faq-group">
+					<div class="plas_integratedStudyDeskPanel">
+						<div class="plas_integratedStudyDeskTitle" ng-click="editButton($event, site.hotTopics[0]);"><a ng-bind="site.hotTopics[0].title" ng-href="{{site.hotTopics[0].link}}">&nbsp;</a></div>
+						<div class="plas_integratedStudyDeskBody" ng-bind-html="trust(site.hotTopics[0].text)">&nbsp;</div>
+					</div>
+
+					<div class="plas_integratedStudyDeskPanel">
+						<div class="plas_integratedStudyDeskTitle" ng-click="editButton($event, site.hotTopics[1]);"><a ng-bind="site.hotTopics[1].title" ng-href="{{site.hotTopics[1].link}}">&nbsp;</a></div>
+						<div class="plas_integratedStudyDeskBody" ng-bind-html="trust(site.hotTopics[1].text)">&nbsp;</div>
+					</div>
+				</div>
+				<div class="plas_faq-group">
+					<div class="plas_integratedStudyDeskPanel">
+						<div class="plas_integratedStudyDeskTitle" ng-click="editButton($event, site.hotTopics[2]);"><a ng-bind="site.hotTopics[2].title" ng-href="{{site.hotTopics[2].link}}">&nbsp;</a></div>
+						<div class="plas_integratedStudyDeskBody" ng-bind-html="trust(site.hotTopics[2].text)">&nbsp;</div>
+					</div>
+
+					<div class="plas_integratedStudyDeskPanel">
+						<div class="plas_integratedStudyDeskTitle" ng-click="editButton($event, site.hotTopics[3]);"><a ng-bind="site.hotTopics[3].title" ng-href="{{site.hotTopics[3].link}}">&nbsp;</a></div>
+						<div class="plas_integratedStudyDeskBody" ng-bind-html="trust(site.hotTopics[3].text)">&nbsp;</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+
+		<!--L&T Highlights!-->
+			<div class="plas_lAndTHighlights">
+				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.highlightTitle" contenteditable>&nbsp;</h3>
+
+				<div class="plas_lAndTHighlightsImage" ng-style="{'background-image': 'url(' + highlight.image + ')'}">&nbsp;</div>
+				<div class="plas_lAndTHighlightsBodyTitle" ng-bind="highlight.title">&nbsp;</div>
+				<div class="plas_lAndTHighlightsBody" ng-bind-html="trust(highlight.text)">&nbsp;</div>
+			</div>
+
+
+
+
+
+
+		<!--Latest news!-->
+			<div class="plas_latestNews">
+				<h3 class="plas_integratedStudyDeskHeader" ng-model="site.newsTitle" ng-bind="site.newsTitle" contenteditable></h3>
+				<div class="plas_newsArticle" ng-repeat="item in order()">
+					<div>
+						<span class="plas_newsArticleTitle" ng-bind="item.title">&nbsp;</span>
+						<span class="plas_newsArticleDate">
+							<span ng-bind="item.author">&nbsp;</span>
+							<span ng-bind="item.date">&nbsp;</span>
+						</span>
+					</div>
+					<div class="plas_newsArticleBody">
+						<span ng-bind="item.text">&nbsp;</span>...
+						<a href="#" ng-href="{{item.link}}" class="plas_newsArticleLearnMore">Learn more</a>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+		<!-- Staff info box -->
+			<div class="plas_info-box">
+				<div class="plas_info-box-header" ng-model="site.supportTitle"  ng-bind="site.supportTitle"  contenteditable>&nbsp;</div>
+				<div>
+					<h5 ng-model="site.support[0].title" ng-bind="site.support[0].title" contenteditable>&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[0].telephone" ng-bind="site.support[0].telephone" contenteditable>&nbsp;</div>
+					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[0].email}}" ng-model="site.support[0].email" ng-bind="site.support[0].email" contenteditable>&nbsp;</a></div>
+				</div>
+				<div>
+					<h5 ng-model="site.support[1].title" ng-bind="site.support[1].title" contenteditable>&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[1].telephone"  ng-bind="site.support[1].telephone" contenteditable>&nbsp;</div>
+					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[1].email}}" ng-model="site.support[1].email" ng-bind="site.support[1].email" contenteditable>&nbsp;</a></div>
+				</div>
+				<div>
+					<h5 ng-model="site.support[2].title" ng-bind="site.support[2].title" contenteditable>&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[2].telephone" ng-bind="site.support[2].telephone" contenteditable>&nbsp;</div>
+					<div class="plas_info-box-link" ng-model="site.support[2].link" ng-bind-html="trust(site.support[2].link)" contenteditable>&nbsp;</div>
+				</div>
+				<div>
+					<h5 ng-model="site.support[1].title" ng-bind="site.support[3].title" contenteditable>&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[3].telephone" ng-bind="site.support[3].telephone" contenteditable>&nbsp;</div>
+					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[3].email}}" ng-model="site.support[3].email" ng-bind-html="trust(site.support[3].email)" contenteditable>&nbsp;</a></div>
+				</div>
+			</div>
+			<div class="plas_info-box-footer">An initiative by <br>Academic Services Division</div>
+
+		</div>
+
+	</div>

@@ -1,0 +1,28 @@
+@media screen and (min-width: 600px) {
+	.site {
+		/* min-width: 72.571429rem; */
+	}
+}
+
+iframe.eep {
+    width: 1045px;  
+    position: absolute;  
+    left: -15px;  
+    right: 31px;  
+    height: 4767px;  margin: auto;  
+    margin-bottom: -959px;
+    top: 0;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    transform-origin: 480px 0;
+    overflow: hidden;
+}
+
+.entry-content {
+    padding-top: 3815px;  
+    position: relative;
+    overflow: visible;
+    /* position: absolute; */
+}

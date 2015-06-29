@@ -8,6 +8,7 @@
    - [Technical User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Technical-User-Guide.html)
    - [Functional User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Functional-User-Guide.html)
 
+
 ##Frontpage & Navigation
 With StudyDesk in Editing mode (You can do this by clicking the button labeled `Turn editing on`
 on the front page of PLAS) visitthe [Frontpage Manager](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html) to begin making your desired changes.

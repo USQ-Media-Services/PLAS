@@ -1,7 +1,12 @@
 #PLAS: Functional User Guide
 
-Link to PLAS: [http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018](http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018)
-Link to Frontpage Manager: [http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html)
+##Links 
+ - PLAS: [http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018](http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018)
+ - Frontpage Manager: [http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html)
+
+ - Guides:
+   - [Technical User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Technical-User-Guide.html)
+   - [Functional User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Functional-User-Guide.html)
 
 ##Frontpage & Navigation
 With StudyDesk in Editing mode (You can do this by clicking the button labeled `Turn editing on`

@@ -1,41 +1,56 @@
-#PLAS: Content Administration Guide
+#PLAS: Technical User Guide
 
-Link to PLAS: [http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018](http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018)
-Link to Frontpage Manager: [http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html)
+##Links
+ - PLAS: [http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018](http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018)
 
-##Frontpage & Navigation
-With StudyDesk in Editing mode (You can do this by clicking the button labeled `Turn editing on`
-on the front page of PLAS) visitthe [Frontpage Manager](http://lor.usq.edu.au/usq/file/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/meta-manger.html) to begin making your desired changes.
+ - Git repo: [https://github.com/USQ-Media-Services/PLAS](https://github.com/USQ-Media-Services/PLAS)
 
-These changes can include:
- - Section titles (simply click and type)
- - Green button text and links (when click bring up a new menu)
- - "Hot Topic" blocks (when click bring up a new menu)
- - Support Hotline details (simply click and type)
- - Navigation items (when click bring up a new menu)
+ - LOR collection: [https://lor.usq.edu.au/usq/items/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/](https://lor.usq.edu.au/usq/items/e465f410-17f1-494c-8ada-9fb1cb82c04d/1/)
 
+ - Guides:
+   - [Technical User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Technical-User-Guide.html)
+   - [Functional User Guide](https://gitcdn.xyz/repo/USQ-Media-Services/PLAS/master/guides/Functional-User-Guide.html)
 
-After all desired changes have been made, you can then click the green `Save` button
-at the top of the page, to save all changes.
-
-##L&T Highlight
-Please visit: [http://mystaffdesk.usq.edu.au/moodle2/mod/page/view.php?id=36609](http://mystaffdesk.usq.edu.au/moodle2/mod/page/view.php?id=36609)
-to make changes to the L&T Highlights.
-
-##Latest News
-Please visit: [http://mystaffdesk.usq.edu.au/moodle2/mod/forum/view.php?id=36509](http://mystaffdesk.usq.edu.au/moodle2/mod/forum/view.php?id=36509)
-to make changes to the Latest News section.
-
-##Frontpage Tips
-Please visit: [http://mystaffdesk.usq.edu.au/moodle2/mod/wiki/view.php?id=48242](http://mystaffdesk.usq.edu.au/moodle2/mod/wiki/view.php?id=48242)
-to make changes to the Tips.
+##Getting commit permission
+To request commit permission please email: [Multimedia](mailto:Multimedia@usq.edu.au)
+You can also make a pull request, that will be reviewed at the earliest convenice by a member of the Multimedia team.
 
 
-##Admin panel
-After making your content changes, and with editing still turned on, click on the admin option that corresponds to your changes.
-There are options for the following:
- - Frontpage new posts
- - Frontpage tips
- - L&T Highlights
+##Prerequisite tools:
+ - [NodeJS](https://nodejs.org/)/[io.js](https://iojs.org/en/index.html)
+ - [Bower](http://bower.io/) (Can be installed by using npm: `npm install -g bower`)
 
-Please note that this just refreshes the main cache, it does not take you to a page to chage the content, please see the appropriate topic above for information on how to change item content.
+##How to checkout the files:
+Copy: `git clone https://github.com/USQ-Media-Services/PLAS.git plas` into command prompt/terminal/shell
+
+##Post clone/checkout steps
+After any pull/clone/checkout/revert always run `bower install` to ensure you have all required files.
+
+##File Organization
+Files are organized as such:
+ - `guides` - Holds all guides (as Markdown)
+ - `res` - Contains all resource files that are not called directly (.psd's, .ai's, unoptimized images, etc.)
+ - `sys` - This is the primary source folder, and contains:
+   - `js` - Holds all JavaScript filesD:\Dropbox\www\Work\2015\725-PLAS-changes\.git\hooks\post-receive.sample
+   - `css` - Holds all Stylesheets
+   - `img` - Holds all images
+   - `templates` - Holds the templates for the frontpage
+ - `index.html` - This is the Frontpage Manager.
+
+
+##How does it work
+The entire thing is handled by the so called Frontpage Manager. It is an angular app that templates the information, fetches any data from the appropriate places, then allows editing and saving.
+
+##The 'magic'
+The magic that lets this monolith work is in the main.js file (`sys > js > main.js`).
+It contains all the angular controllers and environment adjusters.
+
+##So whats really happening?
+The basic flow is this:
+ - Frontpage Manager (FM from here on) loads the source files
+ - The FM then loads up certain moodle pages that contain base64 encoded JSON data (like an adhock database) see: runWhenReady() in main.js & `database()` in db.js.
+ - Data is rendered out to the page, via Angular (see `sys > templates > *.html`)
+ - User makes some edits and hits save, which calls `w.save()`
+ - The templates are processed
+ - All required libraries and stylesheets are process into [data urls](https://developer.mozilla.org/en-US/docs/Web/HTTP/data_URIs) and inlined into the navigation template.
+ - All the now procced data is sent via [Jaxxy](https://github.com/schme16/jaxxy)'s (an XHR lib) mule (uses [postmessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to bypass CORS issues) back to moodle as a POST request, with all the data for each piece.

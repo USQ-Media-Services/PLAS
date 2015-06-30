@@ -81,7 +81,9 @@
 	padding-bottom: 0;
 }
 
-
+#page-course-view-topics #page-heading {
+    display: block;
+}
 
 
 /*Search bar*/

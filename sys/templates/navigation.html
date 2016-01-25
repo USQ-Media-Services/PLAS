@@ -1,8 +1,10 @@
 
 
 	<div ng-controller="navigation" ng-cloak class=" yui3-cssreset ng-cloak plas_navigation">
-		<div class="plas_navWrapper" ng-class="{'plas_active':heading.title==$parent.dropdown||!heading.items}" ng-repeat="heading in nav" heading="{{heading.title}}">
+	{{dropdown}}
+		<div class="plas_navWrapper" ng-class="{'plas_active':heading.title==$parent.dropdown||!heading.items}" ng-repeat="heading in nav track by $index" heading="{{heading.title}}">
 			<a class="plas_navHeading" ng-href="{{heading.link}}" ng-class="{'plas_noArrow':!heading.items}" onclick="$('.plas_navWrapper').not($(this).parent()).removeClass('plas_active'); $(this).parent().toggleClass('plas_active'); sessionStorage.setItem('menu', $(this).text())" ng-style="{  'background-image': 'url(https://usqdirect.usq.edu.au/usq/file/455fab04-5ac6-48cc-98de-d4edea2101de/1/sys/img/icons/'+heading.icon+')'}" ng-click="editButton($event, heading); ">{{heading.title}}</a>
-			<a class="plas_navItem" href="#" ng-href="{{item.link}}" target="{{item.target||'_self'}}" ng-repeat="item in heading.items"  ng-click="editButton($event, item);" >{{item.title}}<span ng-hide="true"> &nbsp;</span></a>
+			<a class="plas_navItem" href="#" ng-href="{{item.link}}" target="{{item.target||'_self'}}" ng-repeat="item in heading.items track by $index"  ng-click="item.nav = true; editButton($event, item);" >{{item.title}}<span ng-hide="true"> &nbsp;</span></a>
+			<a class="plas_navItem plas_addNavItem" ng-show="heading.items.length > 0" ng-click="heading.items.push({title:'new nav link', nav: true, link:'#'})" >Add new<span ng-hide="true"> &nbsp;</span></a>
 		</div>
 	</div>

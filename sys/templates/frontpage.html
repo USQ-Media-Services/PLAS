@@ -35,7 +35,7 @@
 
 		<!--Hot Topic: New StudyDesk!-->
 			<div class="plas_integratedStudyDesk">
-				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.hotTopicTitle" contenteditable>&nbsp;</h3>
+				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.hotTopicTitle"  ng-click="$root.site = site; $root.editHeading = 'hotTopicTitle'; editHeading($event)">&nbsp;</h3>
 
 
 				<div class="plas_faq-group">
@@ -70,7 +70,7 @@
 
 		<!--L&T Highlights!-->
 			<div class="plas_lAndTHighlights">
-				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.highlightTitle" contenteditable>&nbsp;</h3>
+				<h3 class="plas_integratedStudyDeskHeader" ng-bind="site.highlightTitle" ng-click="$root.site = site; $root.editHeading = 'highlightTitle'; editHeading($event)">&nbsp;</h3>
 
 				<div class="plas_lAndTHighlightsImage" ng-style="{'background-image': 'url(' + highlight.image + ')'}">&nbsp;</div>
 				<div class="plas_lAndTHighlightsBodyTitle" ng-bind="highlight.title">&nbsp;</div>
@@ -84,7 +84,7 @@
 
 		<!--Latest news!-->
 			<div class="plas_latestNews">
-				<h3 class="plas_integratedStudyDeskHeader" ng-model="site.newsTitle" ng-bind="site.newsTitle" contenteditable></h3>
+				<h3 class="plas_integratedStudyDeskHeader"  ng-bind="site.newsTitle" ng-click="$root.site = site; $root.editHeading = 'newsTitle'; editHeading($event)"></h3>
 				<div class="plas_newsArticle" ng-repeat="item in order()">
 					<div>
 						<span class="plas_newsArticleTitle" ng-bind="item.title">&nbsp;</span>
@@ -107,26 +107,36 @@
 
 		<!-- Staff info box -->
 			<div class="plas_info-box">
-				<div class="plas_info-box-header" ng-model="site.supportTitle"  ng-bind="site.supportTitle"  contenteditable>&nbsp;</div>
-				<div>
-					<h5 ng-model="site.support[0].title" ng-bind="site.support[0].title" contenteditable>&nbsp;</h5>
-					<div class="plas_info-box-telephone" ng-model="site.support[0].telephone" ng-bind="site.support[0].telephone" contenteditable>&nbsp;</div>
-					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[0].email}}" ng-model="site.support[0].email" ng-bind="site.support[0].email" contenteditable>&nbsp;</a></div>
+				<div class="plas_info-box-header" ng-bind="site.supportTitle" ng-click="$root.site = site; $root.editHeading = 'supportTitle'; editHeading($event)">&nbsp;</div>
+				<div ng-click="$root.site = site.support; $root.editHeading = 0; editSupport($event)">
+					<h5 ng-model="site.support[0].title" ng-bind="site.support[0].title">&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-bind="site.support[0].telephone">&nbsp;</div>
+					<div class="plas_info-box-email" ng-show="!!site.support[0].email"><a ng-href="mailto:{{site.support[0].email}}" ng-bind="site.support[0].email">&nbsp;</a></div>
+					<div class="plas_info-box-link" ng-show="!!site.support[0].link" ng-bind-html="trust(site.support[0].link)">&nbsp;</div>
 				</div>
-				<div>
-					<h5 ng-model="site.support[1].title" ng-bind="site.support[1].title" contenteditable>&nbsp;</h5>
-					<div class="plas_info-box-telephone" ng-model="site.support[1].telephone"  ng-bind="site.support[1].telephone" contenteditable>&nbsp;</div>
-					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[1].email}}" ng-model="site.support[1].email" ng-bind="site.support[1].email" contenteditable>&nbsp;</a></div>
+				<div ng-click="$root.site = site.support; $root.editHeading = 1; editSupport($event)">
+					<h5 ng-model="site.support[1].title" ng-bind="site.support[1].title">&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[1].telephone"  ng-bind="site.support[1].telephone">&nbsp;</div>
+					<div class="plas_info-box-email" ng-show="!!site.support[1].email"><a ng-href="mailto:{{site.support[1].email}}" ng-bind="site.support[1].email">&nbsp;</a></div>
+					<div class="plas_info-box-link" ng-show="!!site.support[1].link" ng-bind-html="trust(site.support[1].link)">&nbsp;</div>
 				</div>
-				<div>
-					<h5 ng-model="site.support[2].title" ng-bind="site.support[2].title" contenteditable>&nbsp;</h5>
-					<div class="plas_info-box-telephone" ng-model="site.support[2].telephone" ng-bind="site.support[2].telephone" contenteditable>&nbsp;</div>
-					<div class="plas_info-box-link" ng-model="site.support[2].link" ng-bind-html="trust(site.support[2].link)" contenteditable>&nbsp;</div>
+				<div ng-click="$root.site = site.support; $root.editHeading = 2; editSupport($event)">
+					<h5 ng-model="site.support[2].title" ng-bind="site.support[2].title">&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-model="site.support[2].telephone" ng-bind="site.support[2].telephone">&nbsp;</div>
+					<div class="plas_info-box-email" ng-show="!!site.support[2].email"><a ng-href="mailto:{{site.support[2].email}}" ng-bind="site.support[2].email">&nbsp;</a></div>
+					<div class="plas_info-box-link" ng-show="!!site.support[2].link" ng-bind-html="trust(site.support[2].link)">&nbsp;</div>
 				</div>
-				<div>
-					<h5 ng-model="site.support[1].title" ng-bind="site.support[3].title" contenteditable>&nbsp;</h5>
-					<div class="plas_info-box-telephone" ng-model="site.support[3].telephone" ng-bind="site.support[3].telephone" contenteditable>&nbsp;</div>
-					<div class="plas_info-box-email"><a ng-href="mailto:{{site.support[3].email}}" ng-model="site.support[3].email" ng-bind-html="trust(site.support[3].email)" contenteditable>&nbsp;</a></div>
+				<div ng-click="$root.site = site.support; $root.editHeading = 3; editSupport($event)">
+					<h5 ng-model="site.support[1].title" ng-bind="site.support[3].title">&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-bind="site.support[3].telephone">&nbsp;</div>
+					<div class="plas_info-box-email" ng-show="!!site.support[3].email"><a ng-href="mailto:{{site.support[3].email}}" ng-bind="site.support[3].email">&nbsp;</a></div>
+					<div class="plas_info-box-link" ng-show="!!site.support[3].link" ng-bind-html="trust(site.support[3].link)">&nbsp;</div>
+				</div>
+				<div ng-click="$root.site = site.support; $root.editHeading = 4; editSupport($event)">
+					<h5 ng-model="site.support[1].title" ng-bind="site.support[4].title">&nbsp;</h5>
+					<div class="plas_info-box-telephone" ng-bind="site.support[4].telephone">&nbsp;</div>
+					<div class="plas_info-box-email" ng-show="!!site.support[4].email"><a ng-href="mailto:{{site.support[4].email}}" ng-bind="site.support[4].email">&nbsp;</a></div>
+					<div class="plas_info-box-link" ng-show="!!site.support[4].link" ng-bind-html="trust(site.support[4].link)">&nbsp;</div>
 				</div>
 			</div>
 			<div class="plas_info-box-footer">An initiative by <br>Academic Services Division</div>

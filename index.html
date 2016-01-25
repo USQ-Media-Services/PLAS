@@ -52,6 +52,14 @@
 		.addItem {}
 		.addSubItem {position: absolute;right: -33px;margin-top: -3px;color: #97C700;font-size: 25px;cursor:pointer;}
 		.removeSubItem {position: absolute;right: -73px;margin-top: -3px;color: #E82222;font-size: 25px;cursor:pointer;}
+		.plas_integratedStudyDeskHeader,
+		.plas_info-box-header, 
+		.plas_info-box > div {
+			cursor:pointer;
+		}
+		.plas_navWrapper {
+		    max-height: 36px;
+		}
 	</style>
 
 
@@ -90,7 +98,7 @@
         </div>
         <div class="modal-body">
 	        <label>Title:</label> <input class="edit-button-input" ng-model="$root.editButton.title">
-	        <div ng-show="$root.editButton.link">
+	        <div ng-show="$root.editButton.nav">
 		        <br>
 		        <br>
 		        <label>Link:</label> <input class="edit-button-input" ng-model="$root.editButton.link">
@@ -103,13 +111,50 @@
 	        <br>
 	        <br>
 			<label class="btn btn-success" ng-click="$root.editButton = null; $root.closeEditButton();">Apply</label>
+			<label ng-show="$root.editButton.nav" style="float:right" class="btn btn-danger" ng-click="$root.nav.removeNavItem($root.editButton); $root.editButton = null; $root.closeEditButton();">Delete</label>
         </div>
+    </script>
+
+
+    <script type="text/ng-template" id="editHeading.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Editing Heading</h1>
+        </div>
+        <div class="modal-body">
+	        <form ng-submit="$root.editHeadingClose(); $event.preventDefault()" method="get" >
+		        <label>Heading:</label> <input class="edit-heading-input" ng-model="$root.site[$root.editHeading]">
+		        <br>
+		        <br>
+				<label class="btn btn-success" ng-click="$root.editHeading = null; $root.editHeadingClose();">Apply</label>
+			</form>
+		</div>
+    </script>
+
+
+    <script type="text/ng-template" id="editSupport.html">
+        <div class="modal-header">
+            <h1 class="modal-title">Editing Support block</h1>
+        </div>
+        <div class="modal-body">
+	        <form ng-submit="$root.editHeadingClose(); $event.preventDefault()" method="get" >
+		        <label>Heading:</label> <input class="edit-supportLink-input edit-supportLink-input1" ng-model="$root.site[$root.editHeading].title">
+		        <br>
+		        <label>Phone:</label> <input class="edit-supportLink-input edit-supportLink-input2" ng-model="$root.site[$root.editHeading].telephone">
+		        <br>
+		        <label>Link:</label> <input class="edit-supportLink-input edit-supportLink-input3" ng-model="$root.site[$root.editHeading].link">
+		        <br>
+		        <label>Email:</label> <input class="edit-supportLink-input edit-supportLink-input4" ng-model="$root.site[$root.editHeading].email">
+		        <br>
+		        <br>
+				<label class="btn btn-success" ng-click="$root.editSupport = null; $root.editSupportClose();">Apply</label>
+			</form>
+		</div>
     </script>
 
 
 
 
-	<!--Editing Nav menu!-->
+	<!-- Editing Nav menu -->
     <script type="text/ng-template" id="editLink.html">
         <div class="modal-header">
             <h1 class="modal-title">Editing: {{$root.editData.title}}</h1>

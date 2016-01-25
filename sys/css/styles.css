@@ -187,8 +187,8 @@
 
 .plas_navHeading:not(.plas_noArrow):before {
 	-webkit-transition: all 700ms ease-in-out;
-	   -moz-transition: all 700ms ease-in-out;
-	        transition: all 700ms ease-in-out;
+	-moz-transition: all 700ms ease-in-out;
+	transition: all 700ms ease-in-out;
 	content:' ';
 	width: 10px;
 	height: 10px;
@@ -197,7 +197,7 @@
 	position: absolute;
 	bottom: 2px;
 	right: 2px;
-	z-index: 10;
+	z-index: 63;
 }
 
 .plas_active .plas_navHeading:before {
@@ -793,7 +793,7 @@ a.plas_lightLink {
 .plas_integratedStudyDeskTitle {
 
     margin-bottom: 3px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 13px;
 }
 
@@ -1459,4 +1459,18 @@ label.btn.btn-success {}
 
 .block .content {
 	margin-bottom: 0;
+}
+
+
+.edit-heading-input {
+    width: 87%;
+}
+
+.modal-body label {
+    min-width: 62px;
+}
+
+.edit-supportLink-input {
+    width: 87%;
+    margin-top: 10px;
 }

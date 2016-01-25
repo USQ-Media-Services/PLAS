@@ -396,8 +396,15 @@ function navigation($scope, $sce){
 	if(w.database) database = w.database;
 
 	n = $scope;
+	n.$root.nav = n
 
 	n.trust = function(a) {if(typeof a === 'string'){return $sce.trustAsHtml(a||'&nbsp;');} else {return '';}};
+
+	n.removeNavItem = function removeNavItem (a) {
+		for (var i in n.nav) {
+			if (n.nav[i].items && n.nav[i].items.indexOf(a) > -1) n.nav[i].items.splice(n.nav[i].items.indexOf(a), 1)
+		}
+	}
 
 	n.dropdown = sessionStorage.getItem('menu');
 
@@ -437,6 +444,7 @@ function navigation($scope, $sce){
 	})
 
 	if (w) n.editButton = w.editButton
+	if (w) n.editHeading = w.editHeading
 
 	/*function fixFeedbackForm () {
 		$($('.feedback-form')[0].contentDocument).find('.box.feedback_anonymousinfo').css('display', 'none').hide(0);
@@ -586,7 +594,6 @@ function meta($scope, $modal, $sce) {
 	ignore = true;
 
 	w.editButton = function (event, button) {
-		console.log(1)
 		event.preventDefault();
 		w.$root.editButton = button;
 
@@ -603,6 +610,54 @@ function meta($scope, $modal, $sce) {
 
 
 		w.$root.closeEditButton = modalInstance.close
+
+		w.safeApply();
+	}
+
+	w.editHeading = function (event, heading) {
+		event.preventDefault();
+		//w.$root.editHeading = heading;
+
+		var modalInstance = $modal.open({
+			templateUrl: 'editHeading.html',
+			controller: modal,
+			backdrop: 'static',
+			resolve: {
+				items: function () {
+					return '';
+				}
+			}
+		});
+
+		setTimeout(function () {
+			$('.edit-heading-input').focus()
+		}, 32)
+
+		w.$root.editHeadingClose = modalInstance.close
+
+		w.safeApply();
+	}
+
+	w.editSupport = function (event, heading) {
+		event.preventDefault();
+		//w.$root.editHeading = heading;
+
+		var modalInstance = $modal.open({
+			templateUrl: 'editSupport.html',
+			controller: modal,
+			backdrop: 'static',
+			resolve: {
+				items: function () {
+					return '';
+				}
+			}
+		});
+
+		setTimeout(function () {
+			$('.edit-supportLink-input1').focus()
+		}, 32)
+
+		w.$root.editSupportClose = modalInstance.close
 
 		w.safeApply();
 	}
@@ -853,10 +908,12 @@ function meta($scope, $modal, $sce) {
 					y[d[i].name] = d[i].value
 				}
 
+
+
+
 				if (!!d && !!y) {
 					w.getData('navblock', function (data) {
 						y['config_text[text]'] = data;
-						d[11].value = data;
 						var t = h.post('http://mystaffdesk.usq.edu.au/moodle2/course/view.php?id=2018&sesskey=' + k + '&bui_editid=37844', y).success(function () {
 							next();
 						})
@@ -905,6 +962,7 @@ function meta($scope, $modal, $sce) {
 			.removeClass('ng-valid')
 			.removeClass('angular-medium-editor')
 			.removeClass('ng-show')
+			.removeClass('plas_active')
 			//.removeClass('ng-hide')
 			.removeClass('ng-dirty')
 			.removeClass('ng-pristine')
@@ -924,12 +982,13 @@ function meta($scope, $modal, $sce) {
 			.removeAttr('ng-include')
 			.removeAttr('ng-style')
 			.removeAttr('ng-repeat')
+			.removeAttr('ng-click')
 			.removeAttr('options')
 			.removeAttr('data-medium-element')
 			.removeAttr('data-placeholder');
 
 
-			t.find('.editorItem').remove();
+			t.find('.editorItem, .plas_addNavItem').remove();
 			callback( (!!noContent ? y : (y + t.html()).replace(/switch-/g, 'ng-')) );
 		}
 
@@ -945,7 +1004,7 @@ function meta($scope, $modal, $sce) {
 				(function(i, e) {
 					jaxxy.modules.get(e.href,'', true).success(function (a) {
 						counter = counter - 1;
-						html = html.replace('[' + i + ']', '<link rel="stylesheet" type="text/css" data-oldsrc="' + e.href + '" href="' + 'data:text/css;base64,' +  B64.encode(a) + '">')
+						html = html.replace('[' + i + ']', '<link rel="stylesheet" type="text/css" data-oldsrc="' + ((e.href || '').split('/')[(e.href || '').split('/').length-1]) + '" href="' + 'data:text/css;base64,' +  B64.encode(a) + '">')
 						if(counter === 0) final(html)
 					});
 
@@ -961,7 +1020,7 @@ function meta($scope, $modal, $sce) {
 				(function(i, e) {
 					jaxxy.modules.get(e.src, '', true).success(function (a) {
 						counter = counter - 1;
-						html = html.replace('[' + i + ']', '<script type="application/javascript" data-oldsrc="' + e.src + '" src="' + 'data:application/javascript;base64,' +  B64.encode(a) + '"></script>')
+						html = html.replace('[' + i + ']', '<script type="application/javascript" data-oldsrc="' + ((e.href || '').split('/')[(e.href || '').split('/').length-1]) + '" src="' + 'data:application/javascript;base64,' +  B64.encode(a) + '"></script>')
 						if(counter === 0) final(html)
 					}, {}, true);
 				})(counter2, e);
